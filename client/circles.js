@@ -31,6 +31,9 @@ Template.circlesCtrl.events({
       c.radius = randomBounded(50);
       c.xlng = randomBounded(w);
       c.ylat = randomBounded(h);
+      //https://github.com/davidmerfield/randomColor
+      c.fill = randomColor();
+      c.stroke =randomColor();
       circleData.push(c);
       c = {};
     };
@@ -56,6 +59,15 @@ Template.circlesCtrl.events({
       })
       .attr("cy", function(d, i){
         return d.ylat;
+      })
+      .style({
+        "fill": function(d, i){
+          return d.fill
+        },
+        "stroke": function(d, i){
+          return d.stroke;
+        },
+        "stroke-width": 2
       });
   }//
 });//events
