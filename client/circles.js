@@ -13,13 +13,13 @@ Template.circlesCtrl.helpers({
     return Session.get("circleCount");
   },
   circleHueList: function() {
-    return ["red","orange","yellow","green","blue","purple","pink","monochrome","random"];
+    return ["red","orange","yellow","green","blue","purple","pink","monochrome"];
   },
   circleHue: function(){
     return Session.get("circleHue");
   },
   circleLumList: function() {
-    return ["bright","light","dark","random"];
+    return ["bright","light","dark"];
   },
   circleLuminosity: function() {
     return Session.get("circleLuminosity");
@@ -36,11 +36,15 @@ Template.circlesCtrl.events({
   },
   //Changing circleHue
   'click .hueOptions': function(e){
+    //Indicate what option was selected
+    showHueSelect(e);
     //Get hue from data-hue attribute
     Session.set("circleHue", e.target.dataset.hue);
   },
   //Changing circleLuminosity
   'click .lumOptions': function(e){
+    //Indicate what option was selected
+    showLumSelect(e);
     //Get luminosity from data-lum attribute
     Session.set("circleLuminosity", e.target.dataset.lum);
   },

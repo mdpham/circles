@@ -14,62 +14,64 @@ FORM SELECTING RANDOM CIRCLE OPTIONS
 <!-- OPTIONS -->
 <div class="col-xs-12">
   <form class="form-inline">
-  <i class="fa fa-chevron-left"></i>	
   <!-- circleCount incrementing -->
   <div class="form-group">
 	<div class="btn-group">
-		<button id="circleAdd" type="button" class="btn btn-sm btn-primary">
+		<button id="circleAdd" type="button" class="btn btn-primary">
 			<i class="fa fa-plus"></i>
 		</button>
-		<button id="circleRemove" type="button" class="btn btn-sm btn-danger">
+		<button id="circleRemove" type="button" class="btn btn-danger">
 			<i class="fa fa-minus"></i>
 		</button>
-	</div>
-	<span class="badge">{{circleCount}}</span>
-	</div>
-	<i class="fa fa-chevron-right"></i>
-	<!-- circleHue dropdown selecting -->
-	<i class="fa fa-chevron-left"></i>
-	<div class="form-group">
-	<div class="dropdown">
-		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-			<strong>Hue:</strong>
+		<button type="button" class="btn">
+			<span class="badge">{{circleCount}}</span>
 		</button>
-		{{circleHue}}
+	</div>
+	</div>
+	<!-- circleHue options dropdown -->
+	<div class="form-group dropdown">
+		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+			<strong>Hue</strong>
+		</button>
 		<ul class="dropdown-menu" role="menu">
 			{{#each circleHueList}}
     	<li role="presentation">
-    		<a data-hue="{{this}}" role="menuitem" tabindex="-1" class="hueOptions">{{this}}</a>
+    		<a data-hue="{{this}}" role="menuitem" tabindex="-1" class="hueOptions">
+    			{{this}} <i class="hueSelectIcon"></i>
+    		</a>
     	</li>
     	{{/each}}
+    	<li role="presentation">
+    		<a data-hue="random" role="menuitem" tabindex="-1" class="hueOptions">
+    			random <i class="hueSelectIcon fa fa-hand-o-left fa-lg"></i>
+    		</a>
+    	</li>
 		</ul>
 	</div>
-	</div>
-	<i class="fa fa-chevron-right"></i>
-	<!-- circleLuminosity dropdown selecting -->
-	<i class="fa fa-chevron-left"></i>
-	<div class="form-group">
-	<div class="dropdown">
+	<!-- circleLuminosity options dropdown -->
+	<div class="form-group dropdown">
 		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-			<strong>Luminosity:</strong>
+			<strong>Luminosity</strong>
 		</button>
-		{{circleLuminosity}}
 		<ul class="dropdown-menu" role="menu">
 			{{#each circleLumList}}
     	<li role="presentation">
-    		<a data-lum="{{this}}" role="menuitem" tabindex="-1" class="lumOptions">{{this}}</a>
+    		<a data-lum="{{this}}" role="menuitem" tabindex="-1" class="lumOptions">
+    			{{this}} <i class="lumSelectIcon"></i>
+    		</a>
     	</li>
     	{{/each}}
+    	<li role="presentation">
+    		<a data-lum="random" role="menuitem" tabindex="-1" class="lumOptions">
+    			random <i class="lumSelectIcon fa fa-hand-o-left fa-lg"></i>
+    		</a>
+    	</li>
 		</ul>
 	</div>
-	</div>
-	<i class="fa fa-chevron-right"></i>
-	<!-- Generate Button for drawing circles in <svg> -->
-	<i class="fa fa-chevron-left"></i>
+	<!-- Generate button for drawing circles in <svg> -->
 	<button id="generateCircles" type="button" class="btn btn-warning">
 		generate
 	</button>
-	<i class="fa fa-chevron-right"></i>
   </form>
 </div>
 </div>

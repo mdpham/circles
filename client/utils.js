@@ -37,3 +37,14 @@ addPanel = function() {
   console.log(wrapper);
   $("#circleCanvas").append(wrapper);
 };
+
+showHueSelect = function(e) {
+  //Remove previously selected icon by clearing all
+  $(".hueSelectIcon").removeClass("fa fa-hand-o-left fa-lg")
+  //Get DOM object for selected option's icon and add class
+  $(e.target.children[0]).addClass("fa fa-hand-o-left fa-lg");
+};
+showLumSelect = function(e){
+  $(".lumSelectIcon").removeClass("fa fa-hand-o-left fa-lg");
+  $(e.target.children[0]).addClass("fa fa-hand-o-left fa-lg");
+};
