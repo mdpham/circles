@@ -61,7 +61,7 @@ Template.circlesCtrl.events({
     addPanel();
     //Get width and height for svg
     var w = $(window).width() - 30; // -30px for panel padding
-    var h = w/2.5;
+    var h = $(window).height() - 70;
     //Generate random circle styling
     var rData = randomData(w, h);
     //Init svg element to created panel
@@ -81,7 +81,7 @@ Template.circlesCtrl.events({
     //Style circles, d is each item in rData array
     circles
       .attr("r", function(d, i){
-        return d.radius;
+        return 0;
       })
       .attr("cx", function(d, i){
         return d.xlng;
@@ -94,14 +94,17 @@ Template.circlesCtrl.events({
           return "white";
         },
         "stroke": function(d, i){
-          return "white";
+          return "black";
         },
         "stroke-width": 0
       })
       //Add transition, delayed at 500ms and duration of 1000ms
       //  Most methods on selections apply to transitions, and d3 interpolates from start->end state
       .transition().delay(500)
-      .duration(1000)
+      .duration(2000)
+      .attr("r", function(d, i){
+        return d.radius;
+      })
       .style({
         "fill": function(d, i){
           return d.fill;
@@ -113,7 +116,7 @@ Template.circlesCtrl.events({
           return Math.sqrt(Math.sqrt(d.radius))*3;
         }
       });
-    //Scroll to newly created panel by remove icon ID
+    //Scroll to newly created panel via remove icon ID
     $("#remove"+Session.get("generation"))[0].scrollIntoView();
   }
   //
