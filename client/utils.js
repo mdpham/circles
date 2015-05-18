@@ -24,3 +24,16 @@ randomData = function(w,h) {
   };
   return cData;
 };
+
+addPanel = function() {
+  var num = Session.get("generation");
+  var count = Session.get("circleCount");
+  var hue = Session.get("circleHue");
+  var lum = Session.get("circleLuminosity");
+  var wrapper = 
+    "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>Count: "
+    +count+" | Hue: "+hue+" | Luminosity: "+lum
+    +"</h3></div><div class='panel-body' id='svgWrapper"+num+"'></div></div>";
+  console.log(wrapper);
+  $("#circleCanvas").append(wrapper);
+};

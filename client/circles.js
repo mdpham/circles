@@ -1,12 +1,11 @@
-
-
-//Session Variables//
 //Number of circles generated
 Session.setDefault("circleCount", 33);
 //Hue of circles generated
 Session.setDefault("circleHue", "random");
 //Luminosity of circles generated
 Session.setDefault("circleLuminosity", "random");
+//Number of generations done
+Session.setDefault("generation", 0);
 
 
 Template.circlesCtrl.helpers({
@@ -47,15 +46,22 @@ Template.circlesCtrl.events({
   },
   //Generate circles
   'click #generateCircles': function(e){
-    var w = 1000, h = 400;
+    //Increment generation
+    Session.set("generation", Session.get("generation")+1);
+    var svgWrapperID = "#svgWrapper"+Session.get("generation");
+    //Add panel to hold SVG
+    addPanel();
+    //Get width and height for svg
+    var w = $(window).width() - 30; // -30px for panel padding
+    var h = w/3;
+    //Generate random circle styling
     var rData = randomData(w, h);
-    console.log(rData);
-    //Init svg element
-    var svg = d3.select("#circleContainer")
+    //Init svg element to created panel
+    var svg = d3.select(svgWrapperID)
       .append("svg")
       .attr("width", w)
       .attr("height", h);
-    //Add circles
+    //Add circles to svg element
     var circles = svg.selectAll("circle")
       .data(rData)
       .enter()
