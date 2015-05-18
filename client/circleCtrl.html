@@ -1,20 +1,78 @@
 <template name="circlesCtrl">
-	<h1>generate some sexy random circles</h1>
-	<div class="container">
-		<div class="row">
-	  <form class="form-inline">
-		<div class="btn-group-vertical">
-			<button id="circleAdd" type="button" class="btn btn-sm btn-primary">
-				<i class="fa fa-plus"></i>
-			</button>
-			<button id="circleRemove" type="button" class="btn btn-sm btn-danger">
-				<i class="fa fa-minus"></i>
-			</button>
-		</div>
-			<button id="generateCircles" type="button" class="btn btn-warning">
-				GENERATE <span class="badge">{{circleCount}}</span>
-			</button>
-	  </form>
-	  </div>
-  </div>
+<div class="container">
+<div class="row">
+	<h2>generate some sexy random circles</h2>
+</div>
+<!-- 
+FORM SELECTING RANDOM CIRCLE OPTIONS
+	REFER: davidmerfield
+	circleCount: number of random circles;
+	circleHue: hue of the colors for circles;
+	circleLuminosity: luminosity of the color for circles;
+ -->
+<div class="row">
+<!-- OPTIONS -->
+<div class="col-xs-12">
+  <form class="form-inline">
+  <i class="fa fa-chevron-left"></i>	
+  <!-- circleCount incrementing -->
+  <div class="form-group">
+	<div class="btn-group">
+		<button id="circleAdd" type="button" class="btn btn-sm btn-primary">
+			<i class="fa fa-plus"></i>
+		</button>
+		<button id="circleRemove" type="button" class="btn btn-sm btn-danger">
+			<i class="fa fa-minus"></i>
+		</button>
+	</div>
+	<span class="badge">{{circleCount}}</span>
+	</div>
+	<i class="fa fa-chevron-right"></i>
+	<!-- circleHue dropdown selecting -->
+	<i class="fa fa-chevron-left"></i>
+	<div class="form-group">
+	<div class="dropdown">
+		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+			<strong>Hue:</strong>
+		</button>
+		{{circleHue}}
+		<ul class="dropdown-menu" role="menu">
+			{{#each circleHueList}}
+    	<li role="presentation">
+    		<a data-hue="{{this}}" role="menuitem" tabindex="-1" class="hueOptions">{{this}}</a>
+    	</li>
+    	{{/each}}
+		</ul>
+	</div>
+	</div>
+	<i class="fa fa-chevron-right"></i>
+	<!-- circleLuminosity dropdown selecting -->
+	<i class="fa fa-chevron-left"></i>
+	<div class="form-group">
+	<div class="dropdown">
+		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+			<strong>Luminosity:</strong>
+		</button>
+		{{circleLuminosity}}
+		<ul class="dropdown-menu" role="menu">
+			{{#each circleLumList}}
+    	<li role="presentation">
+    		<a data-lum="{{this}}" role="menuitem" tabindex="-1" class="lumOptions">{{this}}</a>
+    	</li>
+    	{{/each}}
+		</ul>
+	</div>
+	</div>
+	<i class="fa fa-chevron-right"></i>
+	<!-- Generate Button for drawing circles in <svg> -->
+	<i class="fa fa-chevron-left"></i>
+	<button id="generateCircles" type="button" class="btn btn-warning">
+		generate
+	</button>
+	<i class="fa fa-chevron-right"></i>
+  </form>
+</div>
+</div>
+
+</div>
 </template>

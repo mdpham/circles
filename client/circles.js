@@ -1,43 +1,55 @@
-randomBounded = function(bound) {
-  return Math.floor(Math.random() * bound);
-};
+
 
 //Session Variables//
-//Number of circles 
-Session.setDefault("circleCount", 25);
+//Number of circles generated
+Session.setDefault("circleCount", 33);
+//Hue of circles generated
+Session.setDefault("circleHue", "random");
+//Luminosity of circles generated
+Session.setDefault("circleLuminosity", "random");
+
 
 Template.circlesCtrl.helpers({
   circleCount: function() {
     return Session.get("circleCount");
+  },
+  circleHueList: function() {
+    return ["red","orange","yellow","green","blue","purple","pink","monochrome","random"];
+  },
+  circleHue: function(){
+    return Session.get("circleHue");
+  },
+  circleLumList: function() {
+    return ["bright","light","dark","random"];
+  },
+  circleLuminosity: function() {
+    return Session.get("circleLuminosity");
   }
 });//helpers
 
 Template.circlesCtrl.events({
+  //Incrementing circleCount
   'click #circleAdd': function(e) {
-    Session.set("circleCount", Session.get("circleCount")+1);
+    Session.set("circleCount", Session.get("circleCount")+4);
   },
   'click #circleRemove': function(e) {
-    Session.set("circleCount", Math.max(0, Session.get("circleCount")-1));
+    Session.set("circleCount", Math.max(1, Session.get("circleCount")-4));
   },
+  //Changing circleHue
+  'click .hueOptions': function(e){
+    //Get hue from data-hue attribute
+    Session.set("circleHue", e.target.dataset.hue);
+  },
+  //Changing circleLuminosity
+  'click .lumOptions': function(e){
+    //Get luminosity from data-lum attribute
+    Session.set("circleLuminosity", e.target.dataset.lum);
+  },
+  //Generate circles
   'click #generateCircles': function(e){
-    var w = 500, h = 500;
-    //Get circle count
-    var circleCount = Session.get("circleCount");
-    //Generate random circle data (radius, (x,y) posn);
-    //  Add color eventually
-    var c = {};
-    var circleData = [];
-    for (idx=0; idx<circleCount; idx++) {
-      c.radius = randomBounded(50);
-      c.xlng = randomBounded(w);
-      c.ylat = randomBounded(h);
-      //https://github.com/davidmerfield/randomColor
-      c.fill = randomColor();
-      c.stroke =randomColor();
-      circleData.push(c);
-      c = {};
-    };
-    console.log("random circle data: ", circleData);
+    var w = 1000, h = 400;
+    var rData = randomData(w, h);
+    console.log(rData);
     //Init svg element
     var svg = d3.select("#circleContainer")
       .append("svg")
@@ -45,7 +57,7 @@ Template.circlesCtrl.events({
       .attr("height", h);
     //Add circles
     var circles = svg.selectAll("circle")
-      .data(circleData)
+      .data(rData)
       .enter()
       .append("circle");
     //Style circles
@@ -67,7 +79,7 @@ Template.circlesCtrl.events({
         "stroke": function(d, i){
           return d.stroke;
         },
-        "stroke-width": 2
+        "stroke-width": 4
       });
   }//
 });//events
