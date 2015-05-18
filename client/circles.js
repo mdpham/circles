@@ -57,7 +57,7 @@ Template.circlesCtrl.events({
     addPanel();
     //Get width and height for svg
     var w = $(window).width() - 30; // -30px for panel padding
-    var h = w/3;
+    var h = w/2.5;
     //Generate random circle styling
     var rData = randomData(w, h);
     //Init svg element to created panel
@@ -73,7 +73,6 @@ Template.circlesCtrl.events({
     //Style circles
     circles
       .attr("r", function(d, i){
-        console.log(d);
         return d.radius;
       })
       .attr("cx", function(d, i){
@@ -91,5 +90,9 @@ Template.circlesCtrl.events({
         },
         "stroke-width": 4
       });
-  }//
+  },
+  'click panel': function(e){
+    console.log(e);
+  }
+  //
 });//events

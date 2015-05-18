@@ -2,3 +2,10 @@
 div[id^="svgWrapper"] {
 	overflow: scroll;
 }
+
+i[id^="remove"] {
+	color: gray;
+}
+i[id^="remove"]:hover {
+	color: black;
+}

@@ -31,11 +31,15 @@ addPanel = function() {
   var hue = Session.get("circleHue");
   var lum = Session.get("circleLuminosity");
   var wrapper = 
-    "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>Count: "
+    "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i id='remove"+num+"' class='fa fa-times fa-lg'></i> | Count: "
     +count+" | Hue: "+hue+" | Luminosity: "+lum
     +"</h3></div><div class='panel-body' id='svgWrapper"+num+"'></div></div>";
-  console.log(wrapper);
   $("#circleCanvas").append(wrapper);
+  $("#remove"+num).click(function(e){removePanel(e)});
+};
+removePanel = function(e) {
+  //Traverse up tree until div.panel parent element that was appended and remove from DOM
+  $(e.target).parents(".panel")[0].remove();
 };
 
 showHueSelect = function(e) {
