@@ -113,9 +113,8 @@ Template.circlesCtrl.events({
           return Math.sqrt(Math.sqrt(d.radius))*3;
         }
       });
-  },
-  'click panel': function(e){
-    console.log(e);
+    //Scroll to newly created panel by remove icon ID
+    $("#remove"+Session.get("generation"))[0].scrollIntoView();
   }
   //
 });//events
