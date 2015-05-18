@@ -26,15 +26,19 @@ randomData = function(w,h) {
 };
 
 addPanel = function() {
+  //Get circle generation options for panel heading
   var num = Session.get("generation");
   var count = Session.get("circleCount");
   var hue = Session.get("circleHue");
   var lum = Session.get("circleLuminosity");
+  //Construct panel html
   var wrapper = 
     "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'><i id='remove"+num+"' class='fa fa-times fa-lg'></i> | Count: "
     +count+" | Hue: "+hue+" | Luminosity: "+lum
     +"</h3></div><div class='panel-body' id='svgWrapper"+num+"'></div></div>";
+    //Add panel to DOM
   $("#circleCanvas").append(wrapper);
+  //Add remove on click
   $("#remove"+num).click(function(e){removePanel(e)});
 };
 removePanel = function(e) {

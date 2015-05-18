@@ -15,24 +15,21 @@ FORM SELECTING RANDOM CIRCLE OPTIONS
 <div class="col-xs-12">
   <form class="form-inline">
   <!-- circleCount incrementing -->
-  <div class="form-group">
-	<div class="btn-group">
-		<button id="circleAdd" type="button" class="btn btn-primary">
+  <div class="form-group btn-group">
+		<button id="circleAdd" type="button" class="btn btn-default">
 			<i class="fa fa-plus"></i>
 		</button>
-		<button id="circleRemove" type="button" class="btn btn-danger">
+		<button type="button" class="btn btn-default" disabled>
+			<span class="badge">{{circleCount}} circles</span>
+		</button>
+		<button id="circleRemove" type="button" class="btn btn-default">
 			<i class="fa fa-minus"></i>
 		</button>
-		<button type="button" class="btn">
-			<span class="badge">{{circleCount}}</span>
-		</button>
-	</div>
 	</div>
 	<!-- circleHue options dropdown -->
-	<div class="form-group dropdown">
-		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-			<strong>Hue</strong> <i class="fa fa-chevron-down"></i>
-		</button>
+	<div class="form-group dropdown btn-group">
+		<button class="btn btn-default" type="button"><strong>Hue</strong></button>
+		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-chevron-down"></i></button>
 		<ul class="dropdown-menu" role="menu">
 			{{#each circleHueList}}
     	<li role="presentation">
@@ -49,10 +46,9 @@ FORM SELECTING RANDOM CIRCLE OPTIONS
 		</ul>
 	</div>
 	<!-- circleLuminosity options dropdown -->
-	<div class="form-group dropdown">
-		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-			<strong>Luminosity</strong> <i class="fa fa-chevron-down"></i>
-		</button>
+	<div class="form-group dropdown btn-group">
+		<button class="btn btn-default" type="button"><strong>Luminosity</strong></button>
+		<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-chevron-down"></i></button>
 		<ul class="dropdown-menu" role="menu">
 			{{#each circleLumList}}
     	<li role="presentation">
@@ -69,8 +65,8 @@ FORM SELECTING RANDOM CIRCLE OPTIONS
 		</ul>
 	</div>
 	<!-- Generate button for drawing circles in <svg> -->
-	<button id="generateCircles" type="button" class="btn btn-warning">
-		generate
+	<button id="generateCircles" type="button" class="btn btn-warning btn-lg">
+		Generate
 	</button>
   </form>
 </div>

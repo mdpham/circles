@@ -1,5 +1,5 @@
 //Number of circles generated
-Session.setDefault("circleCount", 33);
+Session.setDefault("circleCount", 41);
 //Hue of circles generated
 Session.setDefault("circleHue", "random");
 //Luminosity of circles generated
@@ -7,6 +7,10 @@ Session.setDefault("circleLuminosity", "random");
 //Number of generations done
 Session.setDefault("generation", 0);
 
+Template.circlesCtrl.onRendered(function(){
+  //Init all tooltips (Hue, Luminosity)
+  $("[data-toggle='tooltip']").tooltip();
+}),//onRendered
 
 Template.circlesCtrl.helpers({
   circleCount: function() {
@@ -32,7 +36,7 @@ Template.circlesCtrl.events({
     Session.set("circleCount", Session.get("circleCount")+4);
   },
   'click #circleRemove': function(e) {
-    Session.set("circleCount", Math.max(1, Session.get("circleCount")-4));
+    Session.set("circleCount", Math.max(5, Session.get("circleCount")-4));
   },
   //Changing circleHue
   'click .hueOptions': function(e){
@@ -66,11 +70,15 @@ Template.circlesCtrl.events({
       .attr("width", w)
       .attr("height", h);
     //Add circles to svg element
+    //  .selectAll will create as many circle elements as needed for rData
     var circles = svg.selectAll("circle")
+      //Add data
       .data(rData)
+      //Enter
       .enter()
+      //Add circles
       .append("circle");
-    //Style circles
+    //Style circles, d is each item in rData array
     circles
       .attr("r", function(d, i){
         return d.radius;
@@ -83,12 +91,27 @@ Template.circlesCtrl.events({
       })
       .style({
         "fill": function(d, i){
-          return d.fill
+          return "white";
+        },
+        "stroke": function(d, i){
+          return "white";
+        },
+        "stroke-width": 0
+      })
+      //Add transition, delayed at 500ms and duration of 1000ms
+      //  Most methods on selections apply to transitions, and d3 interpolates from start->end state
+      .transition().delay(500)
+      .duration(1000)
+      .style({
+        "fill": function(d, i){
+          return d.fill;
         },
         "stroke": function(d, i){
           return d.stroke;
         },
-        "stroke-width": 4
+        "stroke-width": function(d, i){
+          return Math.sqrt(Math.sqrt(d.radius))*3;
+        }
       });
   },
   'click panel': function(e){
